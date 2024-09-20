@@ -1,0 +1,62 @@
+body{
+    background-color: rgb(39, 39, 198);
+    font-family: "montserrat",sans-serif;
+    color:rgb(219, 219, 84);
+    width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    background-color: rgb(43, 43, 170);
+    margin: 50px;
+    justify-content: center;
+    padding: fit content;
+    width:100%;
+    top:0px
+}
+
+.inputdiv{
+    display: flex;
+    gap: 1.5rem;
+}
+.add-button{
+    background-color: green;
+}
+
+.add-button:hover{
+    background-color: rgb(32, 98, 76);
+    scale: 1.5;
+}
+
+input{
+    background-color: rgb(190, 207, 222);
+    font-size: 1.2rem;
+    color: black;
+    border-radius: 10px;
+}
+
+.delete-button{
+    background-color: rgb(164, 28, 28);
+}
+
+.delete-button:hover{
+    background-color: red;
+}
+
+.delete-button , .move-button{
+    margin-left: 0.7rem;
+}
+
+.delete-button:hover,.move-button:hover{
+    scale: 1.2;
+}
+
+button:hover{
+    transition: 0.8s ease;
+}

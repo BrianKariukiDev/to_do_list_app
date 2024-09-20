@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./ToDoList.css"
 
 const ToDoList = () => {
 
@@ -40,7 +41,7 @@ const ToDoList = () => {
 
   return (
     <div className="main-container">
-        <h1>TO LIST</h1>
+        <h1>TODO LIST</h1>
         <div className="content">
             <div className="inputdiv">
                 <input type="text" placeholder="Type your list here..."
@@ -57,7 +58,7 @@ const ToDoList = () => {
                             <button className="move-button" onClick={()=>moveUp(index)}>☝️</button>
                             <button className="move-button" onClick={()=>moveDown(index)}>👇</button>
                         </li>
-                    ))};
+                    ))}
                 </ol>
                 
             </div>
