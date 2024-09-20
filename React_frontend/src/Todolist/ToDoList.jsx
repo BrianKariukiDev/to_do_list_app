@@ -1,11 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./ToDoList.css"
+import PropTypes from "prop-types"
 
-const ToDoList = () => {
 
 
-    const [tasks,setTasks] =useState(["Take a shower","feed the chicken"]);
+const ToDoList = ({fetched_tasks}) => {
+
+
+    const [tasks,setTasks] =useState([]);
     const [newTask,setNewTasks]= useState("");
+
+    useEffect(() => {
+        if (fetched_tasks) {
+            const fetched_tasksdescription = fetched_tasks.map(fetched_task => fetched_task.description);
+            setTasks(prevTasks => [...prevTasks, ...fetched_tasksdescription]);
+        }
+    }, [fetched_tasks]);
 
     function handleInputChange(event){
         setNewTasks(event.target.value);
@@ -65,6 +75,10 @@ const ToDoList = () => {
         </div>
     </div>
   )
+}
+
+ToDoList.propTypes={
+    fetched_tasks:PropTypes.array
 }
 
 export default ToDoList
