@@ -11,3 +11,7 @@ type Task{
 extend type Query{
   tasks: [Task!]! @all @throttle(maxAttempts: 15)
 }
+
+type Mutation{
+  addTask(description: String!): Task! @create
+}

@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 
 
 
-const ToDoList = ({fetched_tasks}) => {
+const ToDoList = ({fetched_tasks, addTaskMutation}) => {
 
 
     const [tasks,setTasks] =useState([]);
@@ -25,8 +25,15 @@ const ToDoList = ({fetched_tasks}) => {
 
     function addTask(){
         if(newTask.trim() !== ""){
-            setTasks(t =>[...t,newTask]);
-            setNewTasks("");
+            try{
+                setTasks(t =>[...t,newTask]);
+                addTaskMutation({variables: {description: newTask}});
+                setNewTasks("");               
+            }
+            catch(error){
+                console.error(error);
+            }
+
         }
     }
 
@@ -80,7 +87,8 @@ const ToDoList = ({fetched_tasks}) => {
 }
 
 ToDoList.propTypes={
-    fetched_tasks:PropTypes.array
+    fetched_tasks:PropTypes.array,
+    addTaskMutation:PropTypes.func
 }
 
 export default ToDoList

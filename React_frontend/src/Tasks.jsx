@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client"
+import { gql, useMutation, useQuery } from "@apollo/client"
 import ToDoList from "./Todolist/ToDoList";
 
     const GET_TASKS=gql `
@@ -9,9 +9,22 @@ import ToDoList from "./Todolist/ToDoList";
         }
     `
 
+    const ADD_TASK=gql `
+        mutation AddTask($description: String!){
+            addTask(description: $description){
+                id
+                description
+                created_at
+                updated_at
+            }
+        }
+    `
+
 const Tasks = () => {
     
     const {error,loading,data}=useQuery(GET_TASKS);
+    const [addTaskMutation]=useMutation(ADD_TASK);
+
     console.log(error,loading,data);
 
         if(loading){
@@ -25,7 +38,7 @@ const Tasks = () => {
        if(data){
         return(
             <>
-                <ToDoList fetched_tasks={data.tasks}/>
+                <ToDoList fetched_tasks={data.tasks} addTaskMutation={addTaskMutation}/>
             </>
         );
     }
