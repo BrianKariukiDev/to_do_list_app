@@ -9,13 +9,15 @@ const ToDoList = ({fetched_tasks}) => {
 
     const [tasks,setTasks] =useState([]);
     const [newTask,setNewTasks]= useState("");
+    const [tasksFetched,setTasksFetched]=useState(false);
 
     useEffect(() => {
-        if (fetched_tasks) {
+        if (fetched_tasks && !tasksFetched) {
             const fetched_tasksdescription = fetched_tasks.map(fetched_task => fetched_task.description);
             setTasks(prevTasks => [...prevTasks, ...fetched_tasksdescription]);
+            setTasksFetched(true);
         }
-    }, [fetched_tasks]);
+    }, [fetched_tasks, tasksFetched]);
 
     function handleInputChange(event){
         setNewTasks(event.target.value);
